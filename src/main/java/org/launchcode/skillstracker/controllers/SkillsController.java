@@ -16,7 +16,7 @@ public class SkillsController {
     public String skillsTracker() {
         String returnString = "<h1>Skills Tracker</h1>" +
                 "<ol>";
-        for(String language : languages) {
+        for (String language : languages) {
             returnString += "<li>" + language + "</li>";
         }
 
@@ -28,30 +28,31 @@ public class SkillsController {
         String formString = "<form method='post' action='/form'>" +
                 "<h2>Name:</h2>" +
                 "<input type='text' name='coder' /><br>" +
-                "<h2>My favorite language</h2>";
-        for(int i = 0; i < 3; i++) {
-            if(i > 0) {
-                formString += "<h2>My " + (i == 1 ? "second" : "third") + " favorite language</h2>";
-            }
-            formString += "<select>";
-            for(String language : languages) {
-                formString += "<option value='" + language + " name='language" + i + "'>" + language + "</option>";
-            }
-            formString += "</select>" +
-                    "<input type='submit' name='Submit!' />";
-        }
+                "<h2>My favorite language</h2>" +
+                "<select name='language1'><option value='Java'>Java</option>" +
+                "<option value='JavaScript'>JavaScript</option>" +
+                "<option value='C++'>C++</option></select>" +
+                "<h2>My second favorite language</h2>" +
+                "<select name='language2'><option value='Java'>Java</option>" +
+                "<option value='JavaScript'>JavaScript</option>" +
+                "<option value='C++'>C++</option></select>" +
+                "<h2>My third favorite language</h2>" +
+                "<select name='language3'><option value='Java'>Java</option>" +
+                "<option value='JavaScript'>JavaScript</option>" +
+                "<option value='C++'>C++</option></select>" +
+                "<br><input type='submit' name='Submit!'/></form>";
 
         return formString;
     }
 
 
     @PostMapping("/form")
-    public String skillsTrackerOutput(@RequestParam String coder, String language0, String language1, String language2) {
-        String returnString = "<h1>" + coder +"</h1>" +
-                "<ul><li> " + language0 +
-                "</ul></li>";
-
-
+    public String skillsTrackerOutput(@RequestParam String coder, @RequestParam String language1,
+                                      @RequestParam String language2, @RequestParam String language3) {
+        String returnString = "<h1>" + coder + "</h1>" +
+                "<ul><li> " + language1 + "</li>" +
+                "<li>" + language2 + "</li>" +
+                "<li>" + language3 +"</li></ul>";
 
 
         return returnString;
